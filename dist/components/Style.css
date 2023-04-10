@@ -1,0 +1,37 @@
+.graph-border-text {
+  background: rgb(31 31 17 / 87%);
+  color: white;
+}
+.box-shadow {
+  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+}
+
+/* raw concept edge design*/
+.raw_concept_edge {
+  stroke: "#b1b1b7";
+  stroke-dasharray: 5;
+  animation: dashdraw 0.5s linear infinite;
+  stroke-width: 1;
+}
+
+@keyframes dashdraw {
+  0% {
+    stroke-dashoffset: 10;
+  }
+}
+
+.lable-edge{
+  margin-top: 1rem;
+  border: none;
+}
+.concept-concept{
+  border-top: 5px solid rgb(135, 206, 235);
+}
+
+.raw-concept{
+  border-top: 3px dashed rgb(177, 177, 183);
+}
+
+.hidden{
+  visibility: hidden;
+}

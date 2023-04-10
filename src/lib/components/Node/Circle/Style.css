@@ -1,0 +1,38 @@
+.node-circle.selected-node-color {
+  background: #4ba074bf;
+}
+
+.node-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.background-color1 {
+  background: #475872;
+}
+.background-color2 {
+  background: rgb(31 42 60);
+}
+
+.node-circle .node-text {
+  color: white;
+  max-width: 90%;
+  max-height: 70%;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.node-container {
+  width: 100%;
+  height: 100%;
+}

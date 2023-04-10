@@ -1,0 +1,68 @@
+{
+  "name": "knowledge-graph-byjus",
+  "description": "representing concepts",
+  "author": "prikshit-byjus-intern",
+  "keywords": [
+    "react",
+    "components",
+    "reaflow",
+    "tree",
+    "graph",
+    "nodes",
+    "edges"
+  ],
+  "version": "0.1.34",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@babel/polyfill": "^7.12.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.2.2",
+    "axios": "^1.3.3",
+    "firebase-tools": "^11.24.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-scripts": "5.0.1",
+    "react-zoom-pan-pinch": "^2.6.1",
+    "reaflow": "^5.1.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "tailwindcss": "^3.2.7"
+  }
+}
