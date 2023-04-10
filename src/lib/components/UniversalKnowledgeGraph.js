@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { nested_to_graph } from "./Helper";
 import Graph from "./Graph";
+import { isEmpty } from "../utils/functions";
 
 export default function UniversalKnowledgeGraph({
   apiData,
@@ -13,11 +14,13 @@ export default function UniversalKnowledgeGraph({
 
   useEffect(() => {
     // setGraphData(nested_to_graph(apiData));
-    if (apiData === undefined || apiData === null || apiData.length === 0)
+    if (isEmpty(apiData))
       console.log("NO DATA");
     else setGraphData(nested_to_graph(apiData, nodeName, nodeDesc,rawNodeGraph));
   }, [apiData]);
 
+  if(isEmpty(graphData)) return <></>
+  else
   return (
     <div>
       {/* <h3><b>Response</b></h3> */}

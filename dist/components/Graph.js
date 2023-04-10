@@ -19,6 +19,7 @@ var _reaflow = require("reaflow");
 var _icons = require("@ant-design/icons");
 var _Popup = _interopRequireDefault(require("./Popup/Popup"));
 var _DisplayNode = _interopRequireDefault(require("./DisplayNode"));
+var _functions = require("../utils/functions");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -47,9 +48,11 @@ function Graph(_ref) {
     setEdges(data.edges);
     setNodes(data.nodes);
   }, [data]);
-  (0, _react.useEffect)(() => {
-    console.log(editHistoryApi);
-  }, [editHistoryApi]);
+
+  // useEffect(() => {
+  //   console.log(editHistoryApi);
+  // }, [editHistoryApi]);
+
   const {
     undo,
     redo,
@@ -62,7 +65,7 @@ function Graph(_ref) {
     nodes,
     edges,
     onUndoRedo: state => {
-      console.log("Undo / Redo", state);
+      // console.log("Undo / Redo", state);
       if (state.type !== "clear") {
         setEdges(state.edges);
         setNodes(state.nodes);
@@ -93,19 +96,16 @@ function Graph(_ref) {
     });
     setOpenEditpopup(false);
   };
-  const alert = () => {
-    console.log("loaded");
-  };
   const handleNodeClick = event => {
     let data = event.node;
     let nodeData = [["Concept Id", data.concept_id], ["Concept Name", data.concept_name], ["Concept Description", data.concept_desc]];
 
     //set raw node selected
     setSelectedNodeRawNodeData(data.raw_concept_node);
-    if (data.myRawNodeEdge !== undefined && data.myRawNodeEdge !== null && data.myRawNodeEdge.length !== 0) {
+    if (!(0, _functions.isEmpty)(data.myRawNodeEdge)) {
       setHiddenRawNodeEdge(prev => {
         let curr = data.myRawNodeEdge;
-        if (prev !== undefined && prev !== null) {
+        if (!(0, _functions.isEmpty)(prev)) {
           document.getElementById(prev[0]).classList.replace('visible', 'hidden');
           document.getElementsByClassName(prev[1])[0].classList.replace('visible', 'hidden');
         }
@@ -132,7 +132,7 @@ function Graph(_ref) {
       return curr;
     });
     setHiddenRawNodeEdge(prev => {
-      if (prev !== undefined && prev !== null) {
+      if (!(0, _functions.isEmpty)(prev)) {
         document.getElementById(prev[0]).classList.replace('visible', 'hidden');
         document.getElementsByClassName(prev[1])[0].classList.replace('visible', 'hidden');
       }
@@ -181,10 +181,12 @@ function Graph(_ref) {
       visibility: "hidden" //hiding edit button
     }
   }, /*#__PURE__*/_react.default.createElement(_antd.Button, {
-    onClick: () => setEditable(val => {
+    onClick: () => {
       setSelections([]);
-      return !val;
-    })
+      setEditable(val => {
+        return !val;
+      });
+    }
   }, /*#__PURE__*/_react.default.createElement(_icons.EditOutlined, null)), /*#__PURE__*/_react.default.createElement("div", {
     style: editable ? {
       display: "block"
@@ -301,7 +303,7 @@ function Graph(_ref) {
         color: "#1677ff"
       }
     }, item[0]), " :", item[1])
-  }) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null), selectedNodeRawNodeData !== null && selectedNodeRawNodeData != undefined ? /*#__PURE__*/_react.default.createElement(_antd.List, {
+  }) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null), !(0, _functions.isEmpty)(selectedNodeRawNodeData) ? /*#__PURE__*/_react.default.createElement(_antd.List, {
     header: /*#__PURE__*/_react.default.createElement("h3", null, "Raw Node Information"),
     bordered: true,
     dataSource: selectedNodeRawNodeData,
@@ -328,7 +330,7 @@ function Graph(_ref) {
     minZoom: -0.9,
     selections: selections,
     onZoomChange: z => {
-      console.log("zooming", z);
+      // console.log("zooming", z);
       setZoom(z);
     },
     nodes: nodes,
@@ -352,7 +354,7 @@ function Graph(_ref) {
       }
     },
     onLayoutChange: layout => {
-      console.log("Layout", layout);
+      // console.log("Layout", layout);
     },
     edge: _edge => /*#__PURE__*/_react.default.createElement(_reaflow.Edge, _extends({}, _edge, {
       style: {
@@ -363,7 +365,7 @@ function Graph(_ref) {
         if (editable) setSelections([node.id]);
       },
       onRemove: (event, edge) => {
-        console.log("Removing Edge", event, edge);
+        // console.log("Removing Edge", event, edge);
         setEdges(edges.filter(e => e.id !== edge.id));
         setSelections([]);
         setEditHistoryApi(val => {

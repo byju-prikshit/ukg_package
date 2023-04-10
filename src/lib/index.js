@@ -1,3 +1,1 @@
-import UniversalKnowledgeGraph from "./components/UniversalKnowledgeGraph"
-
-export {UniversalKnowledgeGraph}
+export { default as UniversalKnowledgeGraph } from './components/UniversalKnowledgeGraph';

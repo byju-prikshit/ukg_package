@@ -8,8 +8,13 @@ var _react = _interopRequireDefault(require("react"));
 require("./Styles.css");
 var _antd = require("antd");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function Popup(props) {
-  return props.trigger ? /*#__PURE__*/_react.default.createElement("div", {
+function Popup(_ref) {
+  let {
+    trigger,
+    setTrigger,
+    children
+  } = _ref;
+  return trigger ? /*#__PURE__*/_react.default.createElement("div", {
     className: "popup"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "popup-inner ",
@@ -24,6 +29,6 @@ function Popup(props) {
     }
   }, " ", /*#__PURE__*/_react.default.createElement(_antd.Button, {
     type: "primary",
-    onClick: () => props.setTrigger(false)
-  }, "Close")), props.children)) : "";
+    onClick: () => setTrigger(false)
+  }, "Close")), children)) : null;
 }

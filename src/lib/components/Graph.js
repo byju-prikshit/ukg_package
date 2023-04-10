@@ -21,6 +21,7 @@ import {
 } from "@ant-design/icons";
 import Popup from "./Popup/Popup";
 import DisplayNode from "./DisplayNode";
+import { isEmpty } from "../utils/functions";
 
 export default function Graph({
   data = null,
@@ -47,15 +48,15 @@ export default function Graph({
     setNodes(data.nodes);
   }, [data]);
 
-  useEffect(() => {
-    console.log(editHistoryApi);
-  }, [editHistoryApi]);
+  // useEffect(() => {
+  //   console.log(editHistoryApi);
+  // }, [editHistoryApi]);
 
   const { undo, redo, canUndo, canRedo, history, clear, count } = useUndo({
     nodes,
     edges,
     onUndoRedo: (state) => {
-      console.log("Undo / Redo", state);
+      // console.log("Undo / Redo", state);
       if (state.type !== "clear") {
         setEdges(state.edges);
         setNodes(state.nodes);
@@ -93,9 +94,7 @@ export default function Graph({
     });
     setOpenEditpopup(false);
   };
-  const alert = () => {
-    console.log("loaded");
-  };
+
   const handleNodeClick = (event) => {
     let data = event.node;
     let nodeData = [
@@ -106,12 +105,12 @@ export default function Graph({
 
     //set raw node selected
     setSelectedNodeRawNodeData(data.raw_concept_node);
-    if(data.myRawNodeEdge!==undefined && data.myRawNodeEdge!==null && data.myRawNodeEdge.length!==0)
+    if(!isEmpty(data.myRawNodeEdge))
     {
       setHiddenRawNodeEdge((prev)=>{
           let curr=data.myRawNodeEdge
 
-          if(prev!==undefined && prev!==null )
+          if(!isEmpty(prev))
           {
             document.getElementById(prev[0]).classList.replace('visible','hidden')
             document.getElementsByClassName(prev[1])[0].classList.replace('visible','hidden')
@@ -152,7 +151,7 @@ export default function Graph({
       return curr;
     });
     setHiddenRawNodeEdge((prev)=>{
-      if(prev!==undefined && prev!==null )
+      if(!isEmpty(prev) )
       {
         document.getElementById(prev[0]).classList.replace('visible','hidden')
         document.getElementsByClassName(prev[1])[0].classList.replace('visible','hidden')
@@ -193,11 +192,12 @@ export default function Graph({
             }}
           >
             <Button
-              onClick={() =>
+              onClick={() =>{
+                setSelections([]);
                 setEditable((val) => {
-                  setSelections([]);
                   return !val;
                 })
+              }
               }
             >
               <EditOutlined />
@@ -326,8 +326,7 @@ export default function Graph({
             ) : (
               <></>
             )}
-            {selectedNodeRawNodeData !== null &&
-            selectedNodeRawNodeData != undefined ? (
+            {!isEmpty(selectedNodeRawNodeData) ? (
               <List
                 header={<h3>Raw Node Information</h3>}
                 bordered
@@ -364,7 +363,7 @@ export default function Graph({
             minZoom={-0.9}
             selections={selections}
             onZoomChange={(z) => {
-              console.log("zooming", z);
+              // console.log("zooming", z);
               setZoom(z);
             }}
             nodes={nodes}
@@ -394,7 +393,7 @@ export default function Graph({
               }
             }}
             onLayoutChange={(layout) => {
-              console.log("Layout", layout);
+              // console.log("Layout", layout);
             }}
             edge={(edge) => (
               <Edge
@@ -415,7 +414,7 @@ export default function Graph({
                   if (editable) setSelections([node.id]);
                 }}
                 onRemove={(event, edge) => {
-                  console.log("Removing Edge", event, edge);
+                  // console.log("Removing Edge", event, edge);
                   setEdges(edges.filter((e) => e.id !== edge.id));
                   setSelections([]);
                   setEditHistoryApi((val) => {
