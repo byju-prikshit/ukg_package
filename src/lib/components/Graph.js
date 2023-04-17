@@ -163,17 +163,11 @@ export default function Graph({
   return (
     <div>
       <div
-        style={{
-          padding: "1rem",
-          paddingBottom: 0,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
+        className={"flex flex-col justify-between p-4 pb-0"}
       >
         {/* pop ups */}
         <Popup trigger={openEditPopup} setTrigger={setOpenEditpopup}>
-          <div style={{ margin: "2rem" }}>
+          <div className="m-8">
             <form onSubmit={setNewNode}>
               <Input type="text" placeholder="name" name="text" />
               <Input type="text" placeholder="desc" name="desc" />
@@ -183,13 +177,9 @@ export default function Graph({
             </form>
           </div>
         </Popup>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="flex justify-between">
           <div
-            style={{
-              marin: "1rem",
-              display: "flex",
-              visibility: "hidden", //hiding edit button
-            }}
+            className={"m-4 flex invisible"}
           >
             <Button
               onClick={() =>{
@@ -222,17 +212,17 @@ export default function Graph({
               <Button onClick={() => clear(nodes, edges)}>Clear history</Button>{" "}
             </div>
           </div>
-          <div style={{ display: "flex" }}>
+          <div className="flex">
             {/* dont show labels on raw node graph  */}
             {!rawNodeGraph ? (
               <>
-                <div style={{ marginRight: "1rem" }}>
+                <div className="mr-4">
                   <div style={{ height: "50px", width: "50px" }}>
                     <Circle text={"concept"} />
                   </div>
                   <div className="concept-concept lable-edge"></div>
                 </div>
-                <div style={{ marginRight: "2rem" }}>
+                <div className="mr-8">
                   <div style={{ height: "50px", width: "50px" }}>
                     {" "}
                     <Circle
@@ -251,30 +241,27 @@ export default function Graph({
               style={{
                 zIndex: 9,
                 background: "rgba(0, 0, 0, .5)",
-                padding: 10,
-                color: "white",
                 fontSize: "1.05rem",
-                marginBottom: "0.5rem",
               }}
+              className={"p-3 text-white mb-2"}
             >
               Zoom: {Math.round(zoom * 100) / 100}
               <br />
               <Button
-                style={{ margin: "0.3rem" }}
+                className="m-1"
                 onClick={() => ref.current.zoomIn()}
               >
                 <ZoomInOutlined />
               </Button>
               <Button
-                style={{ margin: "0.3rem" }}
+                className="m-1"
                 onClick={() => ref.current.zoomOut()}
               >
                 <ZoomOutOutlined />
               </Button>
               <Button
-                style={{ margin: "0.3rem" }}
+                className="m-1 fit-UKG-button"
                 onClick={() => ref.current.fitCanvas()}
-                className="fit-UKG-button"
               >
                 Fit
               </Button>
@@ -284,35 +271,24 @@ export default function Graph({
 
         <div>
           <h3
-            style={{
-              textAlign: "center",
-              fontWeight: 700,
-              padding: "0.5rem 1rem",
-              marginBottom: "0",
-            }}
-            className="graph-border-text"
+            className="graph-border-text mb-0 p-4 py-2 text-center font-bold"
           >
             {editable ? `Edit Mode` : `View Mode`}
           </h3>
         </div>
       </div>
       <div
-        style={{
-          display: "flex",
-          flexDirection: "row-reverse",
-          margin: "0 1rem",
-        }}
-        className="box-shadow"
+        className="box-shadow flex flex-row-reverse m-4 my-0"
       >
         <SlideDrawer
           trigger={openNodeInfoSidebar}
           setTrigger={closeNodeInfoSlider}
           flexBasis={"20%"}
         >
-          <div style={{ margin: "1rem", overflowY: "auto", height: "100%" }}>
+          <div  className="m-4 overflow-y-auto h-full">
             {selectedNode != null ? (
               <List
-                style={{ marginBottom: "1rem" }}
+                className="mb-4"
                 header={<h3>Node Information</h3>}
                 bordered
                 dataSource={selectedNode}
@@ -347,11 +323,10 @@ export default function Graph({
         <div
           style={{
             backgroundImage: `url(${background})`,
-            marginTop: 0,
             height: "78vh",
-            overflow: "hidden",
             flexBasis: openNodeInfoSidebar && "80%",
           }}
+          className="mt-0 overflow-hidden"
         >
           <Canvas
             className="canvas-UKG"

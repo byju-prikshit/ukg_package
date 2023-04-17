@@ -140,6 +140,8 @@ function Graph(_ref) {
     });
   };
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "flex bg-black"
+  }, "Hi"), /*#__PURE__*/_react.default.createElement("div", {
     style: {
       padding: "1rem",
       paddingBottom: 0,

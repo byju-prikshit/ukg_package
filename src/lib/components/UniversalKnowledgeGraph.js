@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { nested_to_graph } from "./Helper";
 import Graph from "./Graph";
 import { isEmpty } from "../utils/functions";
-
 export default function UniversalKnowledgeGraph({
   apiData,
   nodeName = "concept_name",
