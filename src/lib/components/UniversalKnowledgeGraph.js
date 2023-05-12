@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { nested_to_graph } from "./Helper";
 import Graph from "./Graph";
 import { isEmpty } from "../utils/functions";
+import '../global_styles/style.css'
+
 export default function UniversalKnowledgeGraph({
   apiData,
   nodeName = "concept_name",
@@ -18,8 +20,8 @@ export default function UniversalKnowledgeGraph({
     else setGraphData(nested_to_graph(apiData, nodeName, nodeDesc,rawNodeGraph));
   }, [apiData]);
 
-  if(isEmpty(graphData)) return <></>
-  else
+  // if(isEmpty(graphData)) return <></>
+  // else
   return (
     <div>
       {/* <h3><b>Response</b></h3> */}

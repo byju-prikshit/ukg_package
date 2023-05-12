@@ -278,7 +278,7 @@ export default function Graph({
         </div>
       </div>
       <div
-        className="box-shadow flex flex-row-reverse m-4 my-0"
+        className="box-shadow flex flex-row-reverse  my-0 mx-4"
       >
         <SlideDrawer
           trigger={openNodeInfoSidebar}

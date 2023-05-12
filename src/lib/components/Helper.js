@@ -1,6 +1,10 @@
+import { isEmpty } from "../utils/functions";
+
+//global node name,edge name , is raw node graph(2nd type graph) (bool)
 let data_name ;
 let data_desc ;
 let rawNodeGraph;
+
 export function nested_to_graph(data, nodeName, nodeDesc,isRawNodeGraph=false) {
   data_name = nodeName;
   data_desc = nodeDesc;
@@ -63,6 +67,7 @@ function dfs(curr, edges, nodes, isRoot) {
     })
   );
 
+  //predesessor
   if (curr.hasOwnProperty("predecessors") && curr.predecessors !== null) {
     //predesessor
     for (let i = 0; i < curr.predecessors.length; i++) {
@@ -81,6 +86,7 @@ function dfs(curr, edges, nodes, isRoot) {
     }
   }
 
+  //successor
   if (curr.hasOwnProperty("successors") && curr.successors !== null) {
     //successor
     for (let i = 0; i < curr.successors.length; i++) {
@@ -99,8 +105,8 @@ function dfs(curr, edges, nodes, isRoot) {
     }
   }
 
+  //roots (existed earlier)
   if (curr.hasOwnProperty("root") && curr.root !== null) {
-    //roots
     for (let i = 0; i < curr.root.length; i++) {
       //edge bnao
       let child = curr.root[i];
@@ -116,6 +122,7 @@ function dfs(curr, edges, nodes, isRoot) {
       dfs(child, edges, nodes, true);
     }
   }
+  
   //raw concepts
   if (curr.hasOwnProperty("raw_concept") && curr.raw_concept !== null) {
     //raw concept node

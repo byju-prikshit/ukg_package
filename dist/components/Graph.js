@@ -140,22 +140,12 @@ function Graph(_ref) {
     });
   };
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex bg-black"
-  }, "Hi"), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      padding: "1rem",
-      paddingBottom: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between"
-    }
+    className: "flex flex-col justify-between p-4 pb-0"
   }, /*#__PURE__*/_react.default.createElement(_Popup.default, {
     trigger: openEditPopup,
     setTrigger: setOpenEditpopup
   }, /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      margin: "2rem"
-    }
+    className: "m-8"
   }, /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: setNewNode
   }, /*#__PURE__*/_react.default.createElement(_antd.Input, {
@@ -172,16 +162,9 @@ function Graph(_ref) {
     },
     type: "submit"
   }, "Create")))), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      justifyContent: "space-between"
-    }
+    className: "flex justify-between"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      marin: "1rem",
-      display: "flex",
-      visibility: "hidden" //hiding edit button
-    }
+    className: "m-4 flex invisible"
   }, /*#__PURE__*/_react.default.createElement(_antd.Button, {
     onClick: () => {
       setSelections([]);
@@ -212,13 +195,9 @@ function Graph(_ref) {
   }, "Print count"), /*#__PURE__*/_react.default.createElement(_antd.Button, {
     onClick: () => clear(nodes, edges)
   }, "Clear history"), " ")), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex"
-    }
+    className: "flex"
   }, !rawNodeGraph ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      marginRight: "1rem"
-    }
+    className: "mr-4"
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       height: "50px",
@@ -229,9 +208,7 @@ function Graph(_ref) {
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "concept-concept lable-edge"
   })), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      marginRight: "2rem"
-    }
+    className: "mr-8"
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       height: "50px",
@@ -247,56 +224,30 @@ function Graph(_ref) {
     style: {
       zIndex: 9,
       background: "rgba(0, 0, 0, .5)",
-      padding: 10,
-      color: "white",
-      fontSize: "1.05rem",
-      marginBottom: "0.5rem"
-    }
-  }, "Zoom: ", Math.round(zoom * 100) / 100, /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_antd.Button, {
-    style: {
-      margin: "0.3rem"
+      fontSize: "1.05rem"
     },
+    className: "p-3 text-white mb-2"
+  }, "Zoom: ", Math.round(zoom * 100) / 100, /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_antd.Button, {
+    className: "m-1",
     onClick: () => ref.current.zoomIn()
   }, /*#__PURE__*/_react.default.createElement(_icons.ZoomInOutlined, null)), /*#__PURE__*/_react.default.createElement(_antd.Button, {
-    style: {
-      margin: "0.3rem"
-    },
+    className: "m-1",
     onClick: () => ref.current.zoomOut()
   }, /*#__PURE__*/_react.default.createElement(_icons.ZoomOutOutlined, null)), /*#__PURE__*/_react.default.createElement(_antd.Button, {
-    style: {
-      margin: "0.3rem"
-    },
-    onClick: () => ref.current.fitCanvas(),
-    className: "fit-UKG-button"
+    className: "m-1 fit-UKG-button",
+    onClick: () => ref.current.fitCanvas()
   }, "Fit")))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", {
-    style: {
-      textAlign: "center",
-      fontWeight: 700,
-      padding: "0.5rem 1rem",
-      marginBottom: "0"
-    },
-    className: "graph-border-text"
+    className: "graph-border-text mb-0 p-4 py-2 text-center font-bold"
   }, editable ? "Edit Mode" : "View Mode"))), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "row-reverse",
-      margin: "0 1rem"
-    },
-    className: "box-shadow"
+    className: "box-shadow flex flex-row-reverse  my-0 mx-4"
   }, /*#__PURE__*/_react.default.createElement(_SlideDrawer.default, {
     trigger: openNodeInfoSidebar,
     setTrigger: closeNodeInfoSlider,
     flexBasis: "20%"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      margin: "1rem",
-      overflowY: "auto",
-      height: "100%"
-    }
+    className: "m-4 overflow-y-auto h-full"
   }, selectedNode != null ? /*#__PURE__*/_react.default.createElement(_antd.List, {
-    style: {
-      marginBottom: "1rem"
-    },
+    className: "mb-4",
     header: /*#__PURE__*/_react.default.createElement("h3", null, "Node Information"),
     bordered: true,
     dataSource: selectedNode,
@@ -317,11 +268,10 @@ function Graph(_ref) {
   }) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null))), /*#__PURE__*/_react.default.createElement("div", {
     style: {
       backgroundImage: "url(".concat(_background.default, ")"),
-      marginTop: 0,
       height: "78vh",
-      overflow: "hidden",
       flexBasis: openNodeInfoSidebar && "80%"
-    }
+    },
+    className: "mt-0 overflow-hidden"
   }, /*#__PURE__*/_react.default.createElement(_reaflow.Canvas, {
     className: "canvas-UKG",
     ref: ref,
